@@ -1,0 +1,66 @@
+body {font-family: 'Arial', 'Symbol', sans-serif; font-size: 13px; margin: 32px 16px}
+h1 {margin: 30px 10px 16px; font-size: 22px}
+h2 {margin: 30px 10px 16px; font-size: 18px}
+p {margin: 10px}
+#keys {overflow: auto}
+#keyboard {float: left; border: 1px solid black; overflow: hidden; background-color: black; width: 690px; margin: 10px; margin-right: 20px; box-shadow: 8px 8px 5px #888; position: relative}
+#keydetails {float: left; margin-top: 10px; margin-left: 10px; border: 2px solid black; width: 228px; height: 228px; box-shadow: 8px 8px 5px #888}
+#keydetails table {empty-cells: hide}
+#keydetails td {border: 1px solid black; vertical-align: top; width: 105px}
+#keydetails .char {font-size: 26px; font-family: 'Times New Roman', 'Symbol', serif; float: left; margin: 4px 6px 8px 6px}
+#keydetails .code {margin: 4px 10px 2px 5px; float: right}
+#keydetails .name {clear: both; margin: 0 2px; font-size: 11px; height: 42px}
+#keydetails .symbolname {margin: 0; font-size: 11px}
+p, .row {clear: both}
+div.key {float: left; background-color: white; border: 1px solid black; height: 44px; width: 44px; font-weight: bold; font-size: 13px}
+div.special {background-color: lightgray; font-size: 11px}
+div.alnum {cursor: pointer; position: relative}
+div.merged-top {height: 46px; position: relative; top: 1px; border-bottom: none; border-top: none}
+div.merged-bottom {float: right}
+div.merged-beneath {border-top: 2px solid black; border-right: 2px solid black; height: 44px; position: absolute; top: 91px; left: 592px}
+div.merged-beneath + div.merged-bottom {border-left: none}
+.key-table {width: 100%; height: 100%}
+td.group1, td.group2 {text-align: center; width: 50%; height: 50%; padding: 2px}
+#keyboard td.group1, #keyboard td.group2 {line-height: 0.9}
+div.special td.group1 {text-align: left}
+div.hovered {border-color: gray; color: gray}
+div.selected {background-color: gray; color: white}
+
+kbd.command {background-color: #DDD; padding: 0 2px}
+kbd.key {word-spacing: -3px}
+kbd.key, kbd.key kbd {font-family: sans-serif; font-size: 9pt}
+kbd.key kbd {border: 1px outset black; background-color: white; opacity: .7; padding: 0 2px; word-spacing: normal}
+
+
+.diff .rem, #diff-legend .rem {background-color: #E88994}
+.diff .mov, #diff-legend .mov {background-color: #EDF594}
+.diff .new, #diff-legend .new {background-color: #93E889}
+.diff .selected .rem, .diff .selected .mov, .diff .selected .new {color: gray}
+
+form {position: relative}
+form div {margin: 10px; background-color: white; border: 1px solid #D0D0D0; overflow: auto; width: 180px; position: relative}
+form div label {float: left; width: 180px; cursor: pointer}
+form div label span {text-align: center; padding: 3px 0px; display: block}
+form div label input {position: absolute; top: -20px}
+form div input.selected + span {background-color: gray; color: white}
+
+#diff-select {position: absolute; left: 181px}
+#diff-select.pl_proposal {top: -10px}
+#diff-select.pl {top: 11px}
+#geometry-select {width: 540px}
+#diff-legend {display: none; width: 100px; position: absolute; top: -10px; left: 390px}
+#diff-legend > div {display: none; overflow: hidden; width: 90px; margin: 0; border: none}
+#diff-legend > div > div {overflow: hidden; width: 80px; padding: 3px 4px 3px 8px; margin: 0; border: none}
+#diff-legend > div > div > div {width: 10px; height: 10px; float: left; margin: 1px 5px 0 0}
+#explanations {clear: left; margin: 10px; width: 954px}
+#explanations th, #explanations td {padding: 2px; border: 1px solid #557}
+#explanations td:first-child {text-align: center; color: #444; background-color: #DDD; white-space: nowrap}
+#explanations td:first-child strong {color: black}
+#explanations td:first-child + td {text-align: center; background-color: #DCD}
+#explanations td:first-child + td + td {background-color: #DCD}
+#explanations td:first-child + td + td + td {text-align: center; background-color: #CDD}
+#explanations td:first-child + td + td + td + td {background-color: #CDD}
+#explanations th:first-child {background-color: #CCC}
+#explanations th:first-child + th {background-color: #CBC}
+#explanations th:first-child + th + th {background-color: #BCC}
+.letter {text-decoration: underline}

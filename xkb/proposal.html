@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Modification proposal of Polish X.org keyboard layout</title>
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="xkb.css">
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="keydata.js"></script>
+<script src="keybgen.js"></script>
+<script>
+KeybGen.diffs = {
+	pl_proposal:{TLDE:{2:'new'}, AE01:{3:'new'}, AE02:{2:'mov'}, AE04:{3:'new', 2:'mov'}, AE05:{3:'new', 2:'new'}, AE06:{3:'mov', 2:'new'}, AE07:{3:'new', 2:'new'}, AE08:{3:'mov', 2:'mov'}, AE09:{3:'new'}, AE10:{3:'new'}, AE11:{3:'new', 2:'new'}, AD01:{3:'new'}, AD02:{3:'new', 2:'new'}, AD04:{3:'new'}, AD05:{3:'new', 2:'mov'}, AD08:{2:'new'}, AC04:{3:'new', 2:'new'}, AC06:{3:'mov', 2:'new'}, AC07:{3:'new', 2:'new'}, AC08:{3:'new', 2:'new'}, AB04:{3:'new'}, AB05:{2:'mov'}, AB07:{2:'new'}, AB08:{3:'new'}, AB09:{3:'new'}, SPCE:{3:'new', 2:'new'}},
+	pl:{TLDE:{2:'dup'}, AE01:{3:'rem'}, AE02:{2:'rem'}, AE04:{3:'mov', 2:'dup'}, AE05:{3:'mov', 2:'rem'}, AE06:{3:'mov', 2:'rem'}, AE07:{3:'dup', 2:'rem'}, AE08:{3:'dup', 2:'mov'}, AE09:{3:'dup'}, AE10:{3:'dup'}, AE11:{3:'dup', 2:'mov'}, AD01:{3:'dup'}, AD02:{3:'dup', 2:'dup'}, AD04:{3:'rem'}, AD05:{3:'ddk', 2:'ddk'}, AD08:{2:'ddk'}, AC04:{3:'ddk', 2:'rem'}, AC06:{3:'ddk', 2:'ddk'}, AC07:{3:'dup', 2:'dup'}, AC08:{3:'rem', 2:'dup'}, AB04:{3:'mov'}, AB05:{2:'mov'}, AB07:{2:'rem'}, AB08:{3:'rem'}, AB09:{3:'mov'}}
+}
+
+$(function () {
+	var geometry = KeybGen.setGeometry();
+	var layout = KeybGen.setLayout();
+
+	KeybGen.generateKeyboard(geometry, layout);
+	KeybGen.initHovers();
+	KeybGen.initClicks();
+});
+</script>
+</head>
+
+<body>
+
+<h1>Modification proposal of Polish X.org keyboard layout</h1>
+
+<h2>Proposed and current layout</h2>
+
+<form>
+<div id="symbols-select">
+    <label><input type="radio" name="symbols" value="pl_proposal"><span>pl (proposed layout)</span></label>
+    <label><input type="radio" name="symbols" value="pl"><span>legacy (current layout)</span></label>
+</div>
+<div id="diff-select">
+    <label><input type="checkbox" name="diff"><span>mark changes</span></label>
+</div>
+<div id="diff-legend">
+<div class="pl_proposal">
+<div><div class="new"></div> new</div>
+<div><div class="mov"></div> moved</div>
+</div>
+<div class="pl">
+<div><div class="rem"></div> removed</div>
+<div><div class="mov"></div> moved</div>
+</div>
+</div>
+<div id="geometry-select">
+    <label><input type="radio" name="geometry" value="qwerty1"><span>ANSI 0</span></label>
+    <label><input type="radio" name="geometry" value="qwerty2"><span style="border-left: 1px solid #D0D0D0; border-right: 1px solid #D0D0D0">ANSI 1</span></label>
+    <label><input type="radio" name="geometry" value="qwerty3"><span>ANSI 2</span></label>
+</div>
+</form>
+
+<div id="keys">
+<div id="keyboard"></div>
+
+<div id="keydetails">
+<table class="key-table">
+<tr class="level2">
+<td class="group1">
+<td class="group2">
+<tr class="level1">
+<td class="group1">
+<td class="group2">
+</table>
+</div>
+</div>
+
+<h2>General ideas</h2>
+
+<p>New default Polish keyboard layout for X11 is intended to maximize number of useful characters accessible from keyboard, while still keeping compatibility with current layout, where possible.</p>
+<ul>
+<li>All Polish letters, all dead keys, and majority of other characters are left in the same place.</li>
+<li>All duplicates are removed and replaced with new or moved characters.</li>
+<li>Some previously absent common punctuation marks used in Polish were added: quote marks („”, «»), dashes (–, —), ellipsis (…).</li>
+<li>Many additional mathematical symbols were added: ≠, ≈, ≤, ≥, ∞, π. Two currently available logical symbols (¬ and →) were supplemented by ∨, ∧ and ↔.</li>
+<li>New symbols commonly used in Polish texts: €, ¢, §, ‰, ©.</li>
+<li>Some new letters and new dead key were added to maximize number of languages that can be written using standard keyboard layout.</li>
+</ul>
+
+<h2>Languages</h2>
+
+<p>New layout allows writing in majority of common languages that use Latin script: Albanian, Azerbaijani, Basque, Catalan, Croatian, Czech, Danish, Dutch, English, Esperanto, Estonian, Finnish, French, Galician, German, Hungarian, Icelandic, Indonesian, Irish, Italian, Javanese, Kashubian, Latin, Latvian, Lithuanian, Luxembourgish, Malay, Maltese, Norwegian, Polish, Portuguese, Romanian (with cedillas, not commas), Scottish, Slovak, Slovenian, Spanish, Swedish, Turkish, Turkmen, Uzbek, Welsh.</p>
+<p>This includes all European Union languages, except Bulgarian and Greek, which use non-Latin scripts.</p>
+
+<h2>Detailed reasons</h2>
+
+<table id="explanations">
+<tr><th>Key<th colspan=2>Previous character<th colspan=2>New character
+<tr><td>` <strong>~</strong><td>¬<td>Not sign – duplicate, available with <kbd class="key"><kbd>AltGr</kbd> + <kbd>`</kbd></kbd>.<td>∨<td>Logical or – added on key where another logical symbol (¬) is available.
+<tr><td><strong>1</strong> !<td>¹<td>Superscript one – removed, rarely needed (contrary to superscript 2 and 3, that are used in units of area and volume).<td>≠<td>Not equal to – added on key <i>!</i> because it it is often written as <i>!=</i>.
+<tr><td>2 <strong>@</strong><td>⅛<td>Fraction 1/8 – removed, since it is rarely used and more popular vulgar fractions (thirds, fifths) are not present.<td>¿<td>Inverted question mark – moved near similar character: inverted exclamation mark.
+<tr><td><strong>4</strong> $<td>¼<td>Fraction 1/4 – moved to <kbd class="key"><kbd>AltGr</kbd> + <kbd>Shift</kbd> + <kbd>4</kbd></kbd> for consistency with <i>¾</i>.<td>¢<td>Cent sign – new, used with dollar (on the same key) and euro (on the near-by key).
+<tr><td>4 <strong>$</strong><td>$<td>Dollar sign – duplicate, available with <kbd class="key"><kbd>Shift</kbd> + <kbd>4</kbd></kbd>.<td>¼<td>Fraction 1/4 – moved for consistency with <i>¾</i>.
+<tr><td><strong>5</strong> %<td>½<td>Fraction 1/2 – moved to the near-by key (<kbd class="key"><kbd>AltGr</kbd> + <kbd>6</kbd></kbd>).<td>€<td>Euro sign – new, placed where it is engraved on many keyboards.
+<tr><td>5 <strong>%</strong><td>⅜<td>Fraction 3/8 – removed, since it is rarely used and more popular vulgar fractions (thirds, fifths) are not present.<td>‰<td>Permille – new, placed on <i>%</i> key.
+<tr><td><strong>6</strong> ^<td>¾<td>Fraction 3/4 – moved to <kbd class="key"><kbd>AltGr</kbd> + <kbd>Shift</kbd> + <kbd>8</kbd></kbd>.<td>½<td>Fraction 1/2 – moved to make place for euro sign.
+<tr><td>6 <strong>^</strong><td>⅝<td>Fraction 5/8 – removed, since it is rarely used and more popular vulgar fractions (thirds, fifths) are not present.<td>∧<td>Logical and – new, placed where similarly-looking <i>^</i> is available.
+<tr><td><strong>7</strong> &amp;<td>{<td>Left curly brace – duplicate.<td>§<td>Section (in Polish called paragraph) sign – new, placed where similarly-looking <i>&amp;</i> is available.
+<tr><td>7 <strong>&amp;</strong><td>⅞<td>Fraction 7/8 – removed, since it is rarely used and more popular vulgar fractions (thirds, fifths) are not present.<td>≈<td>Almost equal to – new; its wavy shape is somewhat similar to ampersand and section sign.
+<tr><td><strong>8</strong> *<td>[<td>Left square bracket – duplicate.<td>·<td>Middle dot, often used as multiplication sign – moved to key with asterisk, that is used as multiplication sign too.
+<tr><td>8 <strong>*</strong><td>™<td>Trade mark sign – moved to more intuitive <kbd class="key"><kbd>AltGr</kbd> + <kbd>Shift</kbd> + <kbd>T</kbd></kbd>.<td>¾<td>Fraction 3/4 – moved for consistency with <i>¼</i>.
+<tr><td><strong>9</strong> (<td>]<td>Right square bracket – duplicate.<td>«<td>French left-pointing quotation mark – new, used often in Polish too; placed where left parenthesis is.
+<tr><td><strong>0</strong> )<td>}<td>Right curly brace – duplicate.<td>»<td>French right-pointing quotation mark – new, used often in Polish too; placed where right parenthesis is.
+<tr><td><strong>-</strong> _<td>\<td>Backslash – duplicate.<td>–<td>En dash – new, placed where other strokes are.
+<tr><td>- <strong>_</strong><td>¿<td>Inverted question mark – moved near inverted exclamation mark.<td>—<td>Em dash – new, placed where other strokes are.
+<tr><td><strong>q</strong> Q<td>@<td>At sign – duplicate.<td>π<td>Greek small letter pi – symbol of the most common mathematical constant; placed where another Greek letter (<i>Ω</i>) is.
+<tr><td><strong>w</strong> W<td>ł<td>Latin <i>l</i> with stroke – duplicate.<td>œ<td>Latin <i>oe</i> ligature – used eg. in French.
+<tr><td>w <strong>W</strong><td>Ł<td>Latin <i>L</i> with stroke – duplicate.<td>Œ<td>Latin <i>OE</i> ligature – used eg. in French.
+<tr><td><strong>r</strong> R<td>¶<td>Pilcrow – removed, completely not used in Polish.<td>©<td>Copy<span class="letter">r</span>ight sign – placed where another sign in circle (®) is.
+<tr><td><strong>t</strong> T<td>ŧ<td>Latin <i>t</i> with stroke – now available through dead stroke (<kbd class="key"><kbd>AltGr</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd></kbd>).<td>ß<td>German sharp <i>s</i> (<i>Esze<span class="letter">tt</span></i>) – new.
+<tr><td>t <strong>T</strong><td>Ŧ<td>Latin <i>T</i> with stroke – now available through dead stroke (<kbd class="key"><kbd>AltGr</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd></kbd>).<td>™<td><span class="letter">T</span>rade mark sign – moved from <kbd class="key"><kbd>AltGr</kbd> + <kbd>Shift</kbd> + <kbd>8</kbd></kbd>.
+<tr><td>i <strong>I</strong><td>ı<td>Latin dotless <i>i</i> – available through dead dot above (<kbd class="key"><kbd>AltGr</kbd> + <kbd>Shift</kbd> + <kbd>/</kbd></kbd>).<td>↔<td>Left-right arrow – used as logical equivalency sign; placed near other arrows.
+<tr><td><strong>f</strong> F<td>đ<td>Latin <i>d</i> with stroke – now available through dead stroke (<kbd class="key"><kbd>AltGr</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd></kbd>).<td>æ<td>Latin <i>ae</i> ligature – used eg. in Danish, Norwegian and Icelandic.
+<tr><td>f <strong>F</strong><td>ª<td>Feminine ordinal indicator – not used in Polish, can be replaced with superscripted <i>a</i>.<td>Æ<td>Latin <i>AE</i> ligature – used eg. in Danish, Norwegian and Icelandic.
+<tr><td><strong>h</strong> H<td>ħ<td>Latin <i>h</i> with stroke – now available through dead stroke (<kbd class="key"><kbd>AltGr</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd></kbd>).<td>’<td>Typographic apostrophe – moved from <kbd class="key"><kbd>AltGr</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd></kbd> for easier access.
+<tr><td>h <strong>H</strong><td>Ħ<td>Latin <i>H</i> with stroke – now available through dead stroke (<kbd class="key"><kbd>AltGr</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd></kbd>).<td>•<td>Bullet – new, often used to organize a list.
+<tr><td><strong>j</strong> J<td>j<td>Duplicate.<td>ə<td>Small schwa – used eg. in Azerbaijani.
+<tr><td>j <strong>J</strong><td>J<td>Duplicate.<td>Ə<td>Capital schwa – used eg. in Azerbaijani.
+<tr><td><strong>k</strong> K<td>ĸ<td>Greenlandic letter kra – used only in old orthography of Greenlandic, totally useless.<td>…<td>Ellipsis (in Polish: <i lang="pl">wielo<span class="letter">k</span>ropek</i>) – often used punctuation mark.
+<tr><td>k <strong>K</strong><td>&amp;<td>Ampersand – duplicate.<td>◌̵<td>Dead stroke (in Polish: <i lang="pl">martwa <span class="letter">k</span>reska</i>) – can be used to generate letters Ø ø, Đ đ, Ŧ ŧ, Ħ ħ…
+<tr><td><strong>v</strong> V<td>“<td>English left quotation mark – moved to <kbd class="key"><kbd>AltGr</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd></kbd>.<td>„<td>Polish left quotation mark – new, placed near right quotation mark.
+<tr><td>b <strong>B</strong><td>’<td>Typographic apostrophe – moved to <kbd class="key"><kbd>AltGr</kbd> + <kbd>H</kbd></kbd>.<td>“<td>English left quotation mark – moved from <kbd class="key"><kbd>AltGr</kbd> + <kbd>V</kbd></kbd>.
+<tr><td>m <strong>M</strong><td>º<td>Masculine ordinal indicator – not used in Polish, can be replaced with superscripted <i>o</i>; easily confusable with degree sign.<td>∞<td>Infinity sign – new, near some other mathematical symbols.
+<tr><td><strong>,</strong> &lt;<td>─<td>Horizontal connector – often not rendered, totally useless.<td>≤<td>Less-than or equal to – new, placed on less-than sign.
+<tr><td><strong>.</strong> &gt;<td>·<td>Middle dot (often used as multiplication sign) – moved to <kbd class="key"><kbd>AltGr</kbd> + <kbd>8</kbd></kbd>.<td>≥<td>Greater-than or equal to – new, placed on greater-than sign.
+<tr><td>  <td> <td>Space – duplicate.<td> <td>Non-breaking space – new; location is obvious.
+</table>
+
+
+</body>
+</html>
